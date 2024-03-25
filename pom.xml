@@ -10,6 +10,11 @@
 	</properties>
 
     <packaging>pom</packaging>
+	
+	<properties>
+		<sonar.organization>rockar787</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
 
     <modules>
         <module>train-interfaces</module>
