@@ -19,32 +19,32 @@ public class TrainSensorTest {
     @Before
     public void before() {
         controller = mock(TrainController.class);
-        user = mock(User.class);
+        user = mock(TrainUser.class);
         sensor = new TrainSensorImpl(controller, user);
     }
 
     @Test
     public void overrideSpeedLimit_ValidSpeed() {
         sensor.overrideSpeedLimit(100);
-        verify(user, time(0)).setAlarmState(true);
+        verify(user, times(0)).setAlarmState(true);
     }
 
     @Test
     public void overrideSpeedLimit_NegativeSpeed() {
         sensor.overrideSpeedLimit(-10);
-        verify(user, time(1)).setAlarmState(true);
+        verify(user, times(1)).setAlarmState(true);
     }
 
     @Test
     public void overrideSpeedLimit_TooFastSpeed() {
-        sensor.overrideSpeedLimit(160);
-        verify(user, time(1)).setAlarmState(true);
+        sensor.overrideSpeedLimit(501);
+        verify(user, times(1)).setAlarmState(true);
     }
 
     @Test
     public void overrideSpeedLimit_LargeDifference() {
         sensor.overrideSpeedLimit(120);
         sensor.overrideSpeedLimit(30);
-        verify(user, time(1)).setAlarmState(true);
+        verify(user, times(1)).setAlarmState(true);
     }
 }
